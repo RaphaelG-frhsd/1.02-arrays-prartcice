@@ -1,3 +1,4 @@
+
 // Demo data array we will use in all examples
 const foods = ['Pizza', 'Tacos', 'Ice Cream', 'Burgers', 'Pasta']
 
@@ -16,8 +17,6 @@ function listFoods () {
   for (const food of foods){
     output += `<p>${food}</p>`
   }
-
-
 
   render(output)
 }
@@ -99,7 +98,15 @@ document.getElementById('btnForEach').addEventListener('click', forEachFoods)
   - Display the results as an unordered list (<ul>)
 */
 function uppercaseList () {
-  // TODO: Write your code here
+  const upperFoods = foods.map(food => food.toUpperCase())
+
+  let output = '<ul class="list-group">'
+  upperFoods.forEach(food => {
+    output += `<li class="list-group-item">${food}</li>`
+  })
+  output += '</ul>'
+
+  render(output)
 }
 
 /* 
@@ -109,7 +116,15 @@ function uppercaseList () {
   - You may use a backwards loop OR the built-in .reverse()
 */
 function reverseList () {
-  // TODO: Write your code here
+  const reversedFoods = [...foods].reverse()
+
+  let output = '<ul class="list-group">'
+  reversedFoods.forEach(food => {
+    output += `<li class="list-group-item">${food}</li>`
+  })
+  output += '</ul>'
+
+  render(output)
 }
 
 /* 
@@ -119,7 +134,17 @@ function reverseList () {
   - Display it in a Bootstrap card with a heading like "Today's Pick"
 */
 function randomFoodPicker () {
-  // TODO: Write your code here
+  const randomIndex = Math.floor(Math.random() * foods.length)
+  const randomFood = foods[randomIndex]
+
+  render(`
+    <div class="card mx-auto" style="max-width: 300px;">
+      <div class="card-body text-center">
+        <h5 class="card-title">Today's Pick</h5>
+        <p class="card-text">${randomFood}</p>
+      </div>
+    </div>
+  `)
 }
 
 /* 
@@ -130,7 +155,14 @@ function randomFoodPicker () {
   - Display results in the format: Food — X letters
 */
 function wordLengths () {
-  // TODO: Write your code here
+  let output = '<ul class="list-group">'
+
+  for (const food of foods) {
+    output += `<li class="list-group-item">${food} — ${food.length} letters</li>`
+  }
+
+  output += '</ul>'
+  render(output)
 }
 
 // ---- Event listeners for the new buttons ----
